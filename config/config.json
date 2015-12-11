@@ -1,0 +1,19 @@
+{
+  "development": {
+    "database": "listr_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "logging": true,
+    "allow_origin": "http://localhost:4200"
+  },
+  "test": {
+    "database": "listr_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "allow_origin": "http://localhost:4200"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "allow_origin": "http://example.com"
+  }
+}
