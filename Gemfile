@@ -5,3 +5,4 @@ gem 'rails-api'
 gem "active_model_serializers", github: "rails-api/active_model_serializers"
 gem 'spring', group: :development
 gem 'pg'
+gem 'pry', group: :development
