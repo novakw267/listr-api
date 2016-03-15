@@ -53,7 +53,7 @@ class ListsController < ApplicationController
       @list = List.find(params[:id])
     end
 
-    def list_params
-      params.permit(:title, :hidden)
-    end
+  def list_params
+    params.require(:list).permit(:title, :hidden)
+  end
 end

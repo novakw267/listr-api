@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
     end
 
-    def item_params
-      params.permit(:content, :done, :list_id)
-    end
+  def item_params
+    params.require(:item).permit(:content, :done, :list_id)
+  end
 end
