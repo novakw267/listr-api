@@ -3,11 +3,11 @@ require File.expand_path('../boot', __FILE__)
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
-require "active_job/railtie"
+# require "active_job/railtie"
 require "active_record/railtie"
 require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
+# require "action_mailer/railtie"
+# require "action_view/railtie"
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
@@ -32,10 +32,14 @@ module ListrApi
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+    # Cross-Origin Resource Sharing
+    config.middleware.use Rack::Cors do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => :any
+        resource '*',
+                 headers: :any,
+                 methods: [:options, :get,
+                           :post, :patch, :delete]
       end
     end
   end
