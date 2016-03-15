@@ -10,7 +10,7 @@ Item.create!([
   { content: 'Coffee', list: favorites },
   { content: 'Keith Hulu', list: favorites },
   { content: 'Sleep', list: favorites },
-  
+
   { content: 'Build an API', list: todo },
   { content: 'Sleep', list: todo }
 ])
