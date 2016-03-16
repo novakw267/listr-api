@@ -173,20 +173,20 @@ HTTP/1.1 204 No Content
 
 ### Items
 
-| Verb   | URI Pattern  | Controller#Action |
-|:-------|:-------------|:------------------|
-| GET    | `/items`     | `items#index`     |
-| GET    | `/items/:id` | `items#show`      |
-| POST   | `/items`     | `items#create`    |
-| PATCH  | `/items/:id` | `items#update`    |
-| DELETE | `/items/:id` | `items#destroy`   |
+| Verb   | URI Pattern             | Controller#Action |
+|:-------|:------------------------|:------------------|
+| GET    | `/lists/:list_id/items` | `items#index`     |
+| GET    | `/items/:id`            | `items#show`      |
+| POST   | `/lists/:list_id/items` | `items#create`    |
+| PATCH  | `/items/:id`            | `items#update`    |
+| DELETE | `/items/:id`            | `items#destroy`   |
 
-#### GET /items
+#### GET /lists/:list_id/items
 
 Request:
 
 ```sh
-curl --include --request GET http://localhost:3000/items
+curl --include --request GET "http://localhost:3000/lists/$LIST_ID/items"
 ```
 
 Response:
