@@ -1,4 +1,4 @@
-#
+# Base for all API controllers.
 class ApplicationController < ActionController::API
   # Force to wants JSON for API
   before_action :api_request_settings
@@ -6,17 +6,20 @@ class ApplicationController < ActionController::API
     request.format = :json
   end
 
-  def token(signed_token)
-    Rails.application.message_verifier(:signed_token).verify(signed_token)
+  AUTH_BLOCK = proc do |signed_token, _opts|
+    token = begin
+      Rails.application.message_verifier(:signed_token).verify(signed_token)
+    rescue ActiveSupport::MessageVerifier::InvalidSignature
+      false
+    end
+    User.find_by token: token
   end
 
   # Use Token Authentication
   include ActionController::HttpAuthentication::Token::ControllerMethods
   def authenticate
     @current_user =
-      authenticate_or_request_with_http_token do |signed_token, _opts|
-        User.find_by token: token(signed_token)
-      end
+      authenticate_or_request_with_http_token(&AUTH_BLOCK)
   end
 
   # call from actions to get authenticated user (or nil)
@@ -26,9 +29,7 @@ class ApplicationController < ActionController::API
   def set_current_user
     # for access to authenticate method
     t = ActionController::HttpAuthentication::Token
-    @current_user = t.authenticate(self) do |signed_token, _opts|
-      User.find_by token: token(signed_token)
-    end
+    @current_user = t.authenticate(self, &AUTH_BLOCK)
   end
 
   # Require SSL for deployed applications
@@ -48,5 +49,5 @@ class ApplicationController < ActionController::API
 
   # Restrict visibility of these methods
   private :authenticate, :current_user, :set_current_user, :record_not_found
-  private :ssl_configured?, :api_request_settings, :token
+  private :ssl_configured?, :api_request_settings
 end
