@@ -2,24 +2,16 @@
 
 # listr-api
 
-An API for [ember-example-listr](https://github.com/jrhorn424/ember-example-listr)
-
-## Dependencies
-
-Install with `bundle install`.
-
--   [`rails-api`](https://github.com/rails-api/rails-api)
--   [`rails`](https://github.com/rails/rails)
--   [`active_model_serializers`](https://github.com/rails-api/active_model_serializers)
--   [`ruby`](https://www.ruby-lang.org/en/)
--   [`postgres`](http://www.postgresql.org)
+An API for [ember-resources](https://github.com/ga-wdi-boston/ember-resources)
 
 ## Installation
 
-1.  Clone this repository.
+1.  [Fork and] clone this repository.
 1.  Install dependencies with `bundle install`.
-1.  Make new `development` and `test` secrets for `config/secrets.yml`. Add and
-    commit this file.
+1.  Create a `.env` for sensitive settings (`touch .env`).
+1.  Generate new `development` and `test` secrets (`bundle exec rake secret`).
+1.  Store them in `.env` with keys `SECRET_KEY_BASE_<DEVELOPMENT|TEST>`
+    respectively.
 1.  Setup your database with `bin/rake db:nuke_pave` or `bundle exec rake
     db:nuke_pave`.
 1.  Run the API server with `bin/rails server` or `bundle exec rails server`.
@@ -28,11 +20,11 @@ Install with `bundle install`.
 
 Developers should run these often!
 
--   `rake routes` lists the endpoints available in your API.
--   `rake test` runs automated tests.
--   `rails console` opens a REPL that pre-loads the API.
--   `rails db` opens your database client and loads the correct database.
--   `rails server` starts the API.
+-   `bin/rake routes` lists the endpoints available in your API.
+-   `bin/rake test` runs automated tests.
+-   `bin/rails console` opens a REPL that pre-loads the API.
+-   `bin/rails db` opens your database client and loads the correct database.
+-   `bin/rails server` starts the API.
 -   `scripts/*.sh` run various `curl` commands to test the API. See below.
 
 <!-- TODO -   `rake nag` checks your code style. -->
