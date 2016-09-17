@@ -1,16 +1,12 @@
-Item.delete_all
-List.delete_all
+lists = {
+  'Favorite Things' => %w(Cats Star\ Wars Coffee Keith\ Hulu Sleep),
+  'Todo' => %w(Build\ an\ API Sleep)
+}
 
-favorites = List.create!({ title: 'Favorite Things' })
-todo = List.create!({ title: 'Todo' })
-
-Item.create!([
-  { content: 'Cats', list: favorites },
-  { content: 'Star Wars', list: favorites },
-  { content: 'Coffee', list: favorites },
-  { content: 'Keith Hulu', list: favorites },
-  { content: 'Sleep', list: favorites },
-
-  { content: 'Build an API', list: todo },
-  { content: 'Sleep', list: todo }
-])
+lists.each do |title, items|
+  list = List.find_or_create_by title: title
+  items.each do |content|
+    item = { content: content }
+    list.items.create item unless list.items.exists? item
+  end
+end
