@@ -1,11 +1,33 @@
 #
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :update, :destroy]
+  MAX_PAGE_SIZE = ENV['LISTS_MAX_PAGE_SIZE'] || 100
+
+  def size
+    size = params.fetch(:size, MAX_PAGE_SIZE).to_i
+    return size unless size > MAX_PAGE_SIZE
+    MAX_PAGE_SIZE
+  end
+
+  def page
+    params.fetch(:page, 1).to_i
+  end
+
+  def lookahead
+    lookahead = params[:lookahead] == 'true' ? 1 : params[:lookahead].to_i
+    return lookahead if lookahead < size
+    size - 1
+  end
+
+  # Used by index action
+  private :size, :page, :lookahead
 
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all
+    @lists = List.order(:created_at)
+                 .offset(size * (page - 1))
+                 .limit(size + lookahead)
 
     render json: @lists
   end
