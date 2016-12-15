@@ -47,7 +47,7 @@ Developers should run these often!
 Request:
 
 ```sh
-curl --include --request GET http://localhost:3000/lists
+curl --include --request GET http://localhost:4741/lists
 ```
 
 Response:
@@ -83,7 +83,7 @@ Response:
 Request:
 
 ```sh
-curl --include --request GET http://localhost:3000/lists/$ID
+curl --include --request GET http://localhost:4741/lists/$ID
 ```
 
 Response:
@@ -108,7 +108,7 @@ Response:
 Request:
 
 ```sh
-curl --include --request POST http://localhost:3000/lists \
+curl --include --request POST http://localhost:4741/lists \
   --header "Content-Type: application/json" \
   --data '{
     "list": {
@@ -134,7 +134,7 @@ Response:
 Request:
 
 ```sh
-curl --include --request PATCH http://localhost:3000/lists/$ID \
+curl --include --request PATCH http://localhost:4741/lists/$ID \
   --header "Content-Type: application/json" \
   --data '{
     "list": {
@@ -154,7 +154,7 @@ HTTP/1.1 204 No Content
 Request:
 
 ```sh
-curl --include --request DELETE http://localhost:3000/lists/$ID
+curl --include --request DELETE http://localhost:4741/lists/$ID
 ```
 
 Response:
@@ -178,7 +178,7 @@ HTTP/1.1 204 No Content
 Request:
 
 ```sh
-curl --include --request GET "http://localhost:3000/lists/$LIST_ID/items"
+curl --include --request GET "http://localhost:4741/lists/$LIST_ID/items"
 ```
 
 Response:
@@ -206,7 +206,7 @@ Response:
 Request:
 
 ```sh
-curl --include --request GET http://localhost:3000/items/$ID
+curl --include --request GET http://localhost:4741/items/$ID
 ```
 
 Response:
@@ -225,7 +225,7 @@ Response:
 Request:
 
 ```sh
-curl --include --request POST http://localhost:3000/items \
+curl --include --request POST http://localhost:4741/items \
   --header "Content-Type: application/json" \
   --data '{
     "item": {
@@ -252,7 +252,7 @@ Response:
 Request:
 
 ```sh
-curl --include --request PATCH http://localhost:3000/items/$ID \
+curl --include --request PATCH http://localhost:4741/items/$ID \
   --header "Content-Type: application/json" \
   --data '{
     "item": {
@@ -272,7 +272,7 @@ HTTP/1.1 204 No Content
 Request:
 
 ```sh
-curl --include --request DELETE http://localhost:3000/items/$ID
+curl --include --request DELETE http://localhost:4741/items/$ID
 ```
 
 Response:
