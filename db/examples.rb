@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 lists = {
   'Favorite Things' => %w(Cats Star\ Wars Coffee Keith\ Hulu Sleep),
   'Todo' => %w(Build\ an\ API Sleep)

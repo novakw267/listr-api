@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :update, :destroy]
