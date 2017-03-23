@@ -9,5 +9,6 @@ lists.each do |title, items|
   items.each do |content|
     item = { content: content }
     list.items.create item unless list.items.exists? item
+    Store.find_or_create_by(name: 'Workshop Town', list_id: list.id)
   end
 end
